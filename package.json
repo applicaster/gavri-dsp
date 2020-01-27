@@ -1,13 +1,13 @@
 {
   "name": "gavri-dsp",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node_modules/.bin/nodemon local-server.js --exec \"babel-node\"",
     "build": "rm -rf lib && NODE_ENV=production babel ./index.js -d lib --ignore '**/__tests__'",
-    "plugin:update": "zappifest publish --manifest plugin-manifest.json",
+    "plugin:update": "zappifest publish --manifest manifest.json",
     "prepublish": "npm run build",
     "postpublish": "npm run plugin:update"
   },
