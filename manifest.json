@@ -1,6 +1,6 @@
 {
   "api": {},
-  "name": "Dev Demo Provider",
+  "name": "Gavri DSP",
   "type": "data_source_provider",
   "scheme": "gavri-dsp",
   "platform": "",
@@ -21,7 +21,7 @@
   "description": "Data source provider for Gavri DSP",
   "author_email": "zapp@applicaster.com",
   "min_zapp_sdk": "2.1",
-  "dependency_name": "applicaster/gavri-dsp",
+  "dependency_name": "gavri-dsp",
   "manifest_version": "1.0",
   "whitelisted_account_ids": ["569b667b69702d7d1a050000"],
   "dependency_repository_url": [],
