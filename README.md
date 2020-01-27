@@ -1,0 +1,10 @@
+# A minimal DSP provider
+
+## Run locally
+
+```
+$ npm i
+$ npm run start
+
+# Open your browser and run `http://localhost:8080/gavri-dsp/fetchData?type=search&q=private%20ryan`
+```
