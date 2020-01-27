@@ -1,5 +1,5 @@
 {
-  "name": "gavri-dsp",
+  "name": "applicaster/gavri-dsp",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,8 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node_modules/.bin/nodemon local-server.js --exec \"babel-node\""
   },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@applicaster/zapp-pipes-dev-kit": "^1.4.1",
     "@babel/cli": "^7.6.2",
