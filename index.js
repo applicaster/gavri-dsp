@@ -41,7 +41,7 @@ export default {
                   {
                     type: "image",
                     key: "image_base",
-                    src: "http://example.org/image-large.png"
+                    src: "https://via.placeholder.com/320x180.png"
                   }
                 ]
               }
