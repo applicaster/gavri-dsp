@@ -1,11 +1,15 @@
 {
   "name": "gavri-dsp",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node_modules/.bin/nodemon local-server.js --exec \"babel-node\""
+    "start": "node_modules/.bin/nodemon local-server.js --exec \"babel-node\"",
+    "build": "rm -rf lib && NODE_ENV=production babel ./index.js -d lib --ignore '**/__tests__'",
+    "plugin:update": "zappifest publish --manifest plugin-manifest.json",
+    "prepublish": "npm run build",
+    "postpublish": "npm run plugin:update"
   },
   "devDependencies": {
     "@applicaster/zapp-pipes-dev-kit": "^1.4.1",
