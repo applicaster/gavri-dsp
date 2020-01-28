@@ -20,12 +20,9 @@ async function screen({ params }) {
 }
 
 async function component1({ params }) {
-  // console.log(providerInterface);
   const { data } = await axios.get(
     `http://www.omdbapi.com/?s=${params.q}&apikey=866e332`
   );
-  console.log({ data });
-
   return {
     type: {
       value: "feed",
