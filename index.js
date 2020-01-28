@@ -1,5 +1,6 @@
+import axios from "axios";
 
-function screen({params}) {
+async function screen({ params }) {
   return {
     type: {
       value: "feed",
@@ -18,40 +19,50 @@ function screen({params}) {
   };
 }
 
-function component1({ params }) {
+async function component1({ params }) {
+  // console.log(providerInterface);
+  const { data } = await axios.get(
+    `http://www.omdbapi.com/?s=${params.q}&apikey=866e332`
+  );
+  console.log({ data });
+
   return {
     type: {
       value: "feed",
       title: "title"
     },
-    entry: [
-      {
-        type: {
-          value: "video"
-        },
-        id: "Id1",
-        title: "Example Video Title #1",
-        summary: "Example summary",
-        published: "2005-04-06T13:00:00-08:00",
-        updated: "2005-04-06T20:25:05-08:00",
-        media_group: [
-          {
-            type: "image",
-            media_item: [
-              {
-                type: "image",
-                key: "image_base",
-                src: "https://via.placeholder.com/320x180.png"
+    entry:
+      data.Response === "False"
+        ? []
+        : data.Search.map(item => {
+            return {
+              type: {
+                value: "video"
+              },
+              id: "Id1",
+              title: item.Title,
+              summary: "Example summary",
+              published: "2005-04-06T13:00:00-08:00",
+              updated: "2005-04-06T20:25:05-08:00",
+              media_group: [
+                {
+                  type: "image",
+                  media_item: [
+                    {
+                      type: "image",
+                      key: "image_base",
+                      src: item.Poster
+                    }
+                  ]
+                }
+              ],
+              content: {
+                type: "video/hls",
+                src:
+                  "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"
               }
-            ]
-          }
-        ],
-        content: {
-          type: "video/hls",
-          src: "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"
-        }
-      }
-    ]
+            };
+          })
   };
 }
 
@@ -72,8 +83,10 @@ export default {
     testCommand: "gavri-dsp://fetchData?type=search&q=private%20ryan"
   },
   handler: providerInterface => async params => {
-    if (params.component === "1")
-      return await providerInterface.sendResponse(component1({ params }));
+    if (params.component === "1") {
+      const response = await component1({ params });
+      return await providerInterface.sendResponse(response);
+    }
 
     return await providerInterface.sendResponse(screen({ params }));
   }

@@ -1,6 +1,6 @@
 {
   "name": "gavri-dsp",
-  "version": "5.6.0",
+  "version": "5.7.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -20,5 +20,8 @@
     "@babel/preset-env": "^7.6.2",
     "nodemon": "^1.19.3",
     "webpack": "^3.12.0"
+  },
+  "dependencies": {
+    "axios": "^0.19.2"
   }
 }
