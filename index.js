@@ -20,18 +20,24 @@ async function screen({ params }) {
 }
 
 async function component1({ params }) {
-  const { data } = await axios.get(
-    `http://www.omdbapi.com/?s=${params.q}&apikey=866e332`
-  );
+  console.log("*", params.q.length);
+
+  const apiResponse =
+    params.q.length < 3
+      ? { data: { Response: "False" } }
+      : await axios.get(
+          `http://www.omdbapi.com/?s=${params.q}&apikey=${params.url}`
+        );
+
   return {
     type: {
       value: "feed",
       title: "title"
     },
     entry:
-      data.Response === "False"
+      apiResponse.data.Response === "False"
         ? []
-        : data.Search.map(item => {
+        : apiResponse.data.Search.map(item => {
             return {
               type: {
                 value: "video"
