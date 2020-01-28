@@ -84,7 +84,6 @@ export default {
       const response = await component1({ params });
       return await providerInterface.sendResponse(response);
     }
-
-    return await providerInterface.sendResponse(screen({ params }));
+    return providerInterface.sendResponse(await screen({ params }));
   }
 };
